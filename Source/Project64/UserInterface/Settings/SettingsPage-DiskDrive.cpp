@@ -13,11 +13,13 @@ CDiskDrivePage::CDiskDrivePage(HWND hParent, const RECT & rcDispay)
     SetDlgItemText(IDC_IPLDIR_JP_TXT, wGS(OPTION_IPL_ROM_PATH).c_str());
     SetDlgItemText(IDC_IPLDIR_US_TXT, wGS(OPTION_IPL_ROM_USA_PATH).c_str());
     SetDlgItemText(IDC_IPLDIR_TL_TXT, wGS(OPTION_IPL_ROM_TOOL_PATH).c_str());
+    SetDlgItemText(IDC_MODEM_ROM_TXT, wGS(OPTION_MODEM_ROM_PATH).c_str());
     SetDlgItemText(IDC_DISKSAVETYPE_TXT, wGS(OPTION_DISKSAVETYPE).c_str());
 
     m_IplDirJp.Attach(GetDlgItem(IDC_IPL_JP_DIR));
     m_IplDirUs.Attach(GetDlgItem(IDC_IPL_US_DIR));
     m_IplDirTl.Attach(GetDlgItem(IDC_IPL_TL_DIR));
+    m_ModemRomDirJp.Attach(GetDlgItem(IDC_MODEM_ROM_DIR));
 
     CModifiedComboBox * ComboBox;
     ComboBox = AddModComboBox(GetDlgItem(IDC_DISKSAVETYPE), Setting_DiskSaveType);
@@ -69,6 +71,15 @@ void CDiskDrivePage::ApplySettings(bool UpdateScreen)
         g_Settings->DeleteSetting(File_DiskIPLTOOLPath);
     }
 
+    if (m_ModemRomDirJp.IsChanged())
+    {
+        g_Settings->SaveString(File_ModemRomPath, GetCWindowText(m_ModemRomDirJp).c_str());
+    }
+    if (m_ModemRomDirJp.IsReset())
+    {
+        g_Settings->DeleteSetting(File_ModemRomPath);
+    }
+
     CSettingsPageImpl<CDiskDrivePage>::ApplySettings(UpdateScreen);
 }
 
@@ -101,6 +112,11 @@ void CDiskDrivePage::SelectIplDirTl(UINT /*Code*/, int /*id*/, HWND /*ctl*/)
     SelectFile(DIR_SELECT_PLUGIN, m_IplDirTl);
 }
 
+void CDiskDrivePage::SelectModemRomDir(UINT /*Code*/, int /*id*/, HWND /*ctl*/)
+{
+    SelectFile(DIR_SELECT_PLUGIN, m_ModemRomDirJp);
+}
+
 void CDiskDrivePage::IplDirJpChanged(UINT /*Code*/, int /*id*/, HWND /*ctl*/)
 {
     if (m_InUpdateSettings)
@@ -131,6 +147,16 @@ void CDiskDrivePage::IplDirTlChanged(UINT /*Code*/, int /*id*/, HWND /*ctl*/)
     SendMessage(GetParent(), PSM_CHANGED, (WPARAM)m_hWnd, 0);
 }
 
+void CDiskDrivePage::ModemRomChanged(UINT /*Code*/, int /*id*/, HWND /*ctl*/)
+{
+    if (m_InUpdateSettings)
+    {
+        return;
+    }
+    m_ModemRomDirJp.SetChanged(true);
+    SendMessage(GetParent(), PSM_CHANGED, (WPARAM)m_hWnd, 0);
+}
+
 void CDiskDrivePage::UpdatePageSettings(void)
 {
     m_InUpdateSettings = true;
@@ -143,6 +169,8 @@ void CDiskDrivePage::UpdatePageSettings(void)
     m_IplDirUs.SetWindowText(File.ToUTF16().c_str());
     g_Settings->LoadStringVal(File_DiskIPLTOOLPath, File);
     m_IplDirTl.SetWindowText(File.ToUTF16().c_str());
+    g_Settings->LoadStringVal(File_ModemRomPath, File);
+    m_ModemRomDirJp.SetWindowText(File.ToUTF16().c_str());
 
     m_InUpdateSettings = false;
 }

@@ -210,6 +210,7 @@ void CLanguage::LoadDefaultStrings(void)
     DEF_STR(OPTION_IPL_ROM_PATH, "Japanese retail 64DD IPL ROM path:");
     DEF_STR(OPTION_IPL_ROM_USA_PATH, "American retail 64DD IPL ROM path:");
     DEF_STR(OPTION_IPL_ROM_TOOL_PATH, "Development 64DD IPL ROM path:");
+    DEF_STR(OPTION_MODEM_ROM_PATH, "Modem ROM Path:");
     DEF_STR(OPTION_DISKSAVETYPE, "Disk save type:");
     DEF_STR(OPTION_ENABLE_ENHANCEMENTS, "Enable enhancements");
     DEF_STR(OPTION_SHOW_STATUS_BAR, "Show status bar");

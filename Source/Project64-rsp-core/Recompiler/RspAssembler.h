@@ -2,6 +2,8 @@
 #if defined(__amd64__) || defined(_M_X64)
 
 #include <Project64-rsp-core/Recompiler/asmjit.h>
+#include <cstdint>
+#include <string>
 
 class RspAssembler :
     public asmjit::x86::Assembler,

@@ -2,6 +2,8 @@
 
 #pragma once
 #include "asmjit.h"
+#include <cstdint>
+#include <string>
 
 class CRSPSystem;
 class RspAssembler;

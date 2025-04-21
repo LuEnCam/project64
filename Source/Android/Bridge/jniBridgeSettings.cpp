@@ -242,6 +242,7 @@ CJniBridegSettings::CJniBridegSettings()
     ADD_SETTING(File_DiskIPLPath);
     ADD_SETTING(File_DiskIPLUSAPath);
     ADD_SETTING(File_DiskIPLTOOLPath);
+    ADD_SETTING(File_ModemRomPath);
 
     // Debugger
     ADD_SETTING(Debugger_Enabled);

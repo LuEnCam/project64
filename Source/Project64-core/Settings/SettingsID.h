@@ -239,6 +239,7 @@ enum SettingID
     File_DiskIPLPath,
     File_DiskIPLUSAPath,
     File_DiskIPLTOOLPath,
+    File_ModemRomPath,
 
     // Debugger
     Debugger_Enabled,

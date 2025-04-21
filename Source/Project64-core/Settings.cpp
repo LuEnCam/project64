@@ -315,6 +315,7 @@ void CSettings::AddHowToHandleSetting(const char * BaseDirectory)
     AddHandler(File_DiskIPLPath, new CSettingTypeApplicationPath("Settings", "Disk IPL ROM Path", Default_None));
     AddHandler(File_DiskIPLUSAPath, new CSettingTypeApplicationPath("Settings", "Disk IPL USA ROM Path", Default_None));
     AddHandler(File_DiskIPLTOOLPath, new CSettingTypeApplicationPath("Settings", "Disk IPL TOOL ROM Path", Default_None));
+    AddHandler(File_ModemRomPath, new CSettingTypeApplicationPath("Settings", "N64 Modem ROM Path", Default_None));
 
     AddHandler(Debugger_Enabled, new CSettingTypeApplication("Debugger", "Debugger", false));
     AddHandler(Debugger_EndOnPermLoop, new CSettingTypeApplication("Debugger", "End On Perm Loop", false));
